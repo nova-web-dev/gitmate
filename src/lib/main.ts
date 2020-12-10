@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 import { exec } from 'child_process'
+
 import Git from 'nodegit'
 
 import { logger } from './logger'
