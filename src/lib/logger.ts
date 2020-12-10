@@ -1,12 +1,15 @@
+const useScope = false;
 
 class Logger {
-  constructor(private scope: string) {
-
-  }
+  constructor(private scope: string) {}
 
   public log(...args): void {
     // @ts-ignore
-    console.log(`${this.scope}: `, ...args)
+    if (useScope) {
+      console.log(`${this.scope}: `, ...args)
+    } else {
+      console.log(...args)
+    }
   }
 }
 

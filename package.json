@@ -47,7 +47,10 @@
     "gitmate": "bin/gitmate.js"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "child_process": "^1.0.2",
+    "clear": "^0.1.0",
+    "figlet": "^1.5.0",
     "nodegit": "^0.27.0",
     "typescript": "^4.1.2"
   },
