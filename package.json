@@ -78,6 +78,9 @@
     "typescript": "^4.0.2"
   },
   "files": [
+    "build/main",
+    "build/module",
+    "build/main/lib/**",
     "!src",
     "!tsconfig.json",
     "!tsconfig.module.json"
