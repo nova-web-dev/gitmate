@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.10.1...v1.10.3) (2020-12-10)
+
 ### [1.10.1](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.9.3...v1.10.1) (2020-12-10)
 
 ### [1.9.3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.9.1...v1.9.3) (2020-12-10)
