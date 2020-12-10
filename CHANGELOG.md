@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.12.2...v1.13.0) (2020-12-10)
+
+
+### Features
+
+* improved error messages ([8177eb3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/commit/8177eb309bb7a5ab938f14c03a694c69f94019e2))
+
 ### [1.12.2](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.12.0...v1.12.2) (2020-12-10)
 
 ## [1.12.0](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.10.3...v1.12.0) (2020-12-10)
