@@ -44,7 +44,6 @@
     "node": ">=10"
   },
   "bin": {
-    "@nova-web/gitmate": "bin/gitmate.js",
     "gitmate": "bin/gitmate.js"
   },
   "dependencies": {
