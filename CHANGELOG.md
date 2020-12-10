@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.10.3...v1.12.0) (2020-12-10)
+
+
+### Features
+
+* chalk, error handling ([3c898e5](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/commit/3c898e59b8e4ce60885364f13e2dcc8d8beec84e))
+* fetch remotes, branches ([bf9e5ff](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/commit/bf9e5ff0536ddc3020a2f698e04261b70c46022a))
+
 ### [1.10.3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.10.1...v1.10.3) (2020-12-10)
 
 ### [1.10.1](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.9.3...v1.10.1) (2020-12-10)
