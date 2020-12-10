@@ -20,8 +20,12 @@ const fetchBranch = (repository: Git.Repository) => async (branchName: string): 
       await repository.mergeBranches(currentBranch, `refs/remotes/origin/${currentBranch}`)
       logger.log('...merge complete.\n')
     }).catch((ex) => {
-      logger.log(`error: unable to fetch "${branchName}"`)
-      logger.log(ex);
+      logger.log(chalk.blue`unable to fetch branch "${branchName}"`)
+      logger.log(
+        chalk.blue(
+          `(${getErrorStr(ex)})`
+        )
+      )
     })
 }
 
@@ -37,9 +41,9 @@ const fetchRemoteInfo = async (item: Git.Remote): Promise<IRemoteObj> => {
   try {
     defaultBranch = await item.defaultBranch()
   } catch (ex) {
-    logger.log(chalk.blue(`warn: unable to fetch default branch info for remote "${item.name()}"`))
-    logger.log(chalk.blue(`warn: "${getErrorStr(ex)}"`))
-    logger.log(chalk.blue('warn: falling back to "master".\n'))
+    logger.log(chalk.blue(`no default branch info found for remote "${item.name()}"`))
+    logger.log(chalk.blue(`(${getErrorStr(ex)})`))
+    logger.log(chalk.blue('falling back to "master".\n'))
     defaultBranch = 'master'
   }
   return {
