@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-console.log('it worked!')
+console.log('GITMATE!')
 require('../build/main/index')
 
