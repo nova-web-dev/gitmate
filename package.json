@@ -44,7 +44,7 @@
     "node": ">=10"
   },
   "bin": {
-    "@nova-web/gitmate": "./build/main/index.js"
+    "@nova-web/gitmate": "./build/main/index.js",
     "gitmate": "./build/main/index.js"
   },
   "dependencies": {
