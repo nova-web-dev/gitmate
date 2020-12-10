@@ -81,6 +81,7 @@
     "bin",
     "build/main",
     "build/module",
+    "package.json",
     "!**/*.spec.*",
     "!**/*.json",
     "CHANGELOG.md",
