@@ -44,6 +44,9 @@
   "engines": {
     "node": ">=10"
   },
+  "bin": {
+    "gitmate": "./build/main/index.js"
+  },
   "dependencies": {
     "child_process": "^1.0.2"
   },
