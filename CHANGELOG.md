@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.5.3...v1.6.1) (2020-12-10)
+
+
+### Bug Fixes
+
+* bin file ([446bdf6](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/commit/446bdf62d5ea85351c29ca524bec59c7f49188e6))
+
 ### [1.5.3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.5.1...v1.5.3) (2020-12-10)
 
 
