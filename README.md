@@ -4,7 +4,7 @@ A simple helper for common git tasks.
 
 ### Installation
 
-    npm install -g gitmate@npm:@nova-web/gitmate
+    npm install -g @nova-web/gitmate
 
 ### Commands
 
