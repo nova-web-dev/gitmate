@@ -8,4 +8,4 @@ A simple helper for common git tasks.
 
 ### Commands
 
-- `fetch` - fetches master branch, develop, and checks out current branch.
+- `gitmate fetch` - fetches all remotes, master branch, develop, and checks out current branch.
