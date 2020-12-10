@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.5.1...v1.5.3) (2020-12-10)
+
+
+### Bug Fixes
+
+* bin file ([0c8ec6a](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/commit/0c8ec6a1312fa0c557ad7636715a693c0b664faf))
+
 ### [1.5.1](https://github.com/YOUR_GITHUB_USER_NAME/gitmate/compare/v1.4.3...v1.5.1) (2020-12-10)
 
 
