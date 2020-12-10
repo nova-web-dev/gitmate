@@ -23,7 +23,7 @@ const fetchBranch = (repository: Git.Repository) => async (branchName: string): 
       logger.log(chalk.blue`unable to fetch branch "${branchName}"`)
       logger.log(
         chalk.blue(
-          `(${getErrorStr(ex)})`
+          `(${getErrorStr(ex)})\n`
         )
       )
     })
