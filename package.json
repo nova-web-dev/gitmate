@@ -1,6 +1,6 @@
 {
   "name": "@nova-web/gitmate",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "A simple git cli with some handy features.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
