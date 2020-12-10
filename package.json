@@ -78,15 +78,9 @@
     "typescript": "^4.0.2"
   },
   "files": [
-    "bin",
-    "build/main",
-    "build/module",
-    "package.json",
-    "!**/*.spec.*",
-    "!**/*.json",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
+    "!src",
+    "!tsconfig.json",
+    "!tsconfig.module.json"
   ],
   "ava": {
     "failFast": true,
