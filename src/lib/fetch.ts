@@ -11,13 +11,15 @@ import {
   mapSeries
 } from './util';
 
+const DEFAULT_REMOTE = 'origin'
 
-const fetchBranch = (repository: Git.Repository) => async (branchName: string): Promise<void> => {
+
+const fetchBranch = (repository: Git.Repository, remote?: string) => async (branchName: string): Promise<void> => {
   return repository.checkoutBranch(branchName)
     .then(async () => {
       const currentBranch = getLocalBranchName(await repository.getCurrentBranch())
       logger.log(chalk.yellow(`\nfetching branch "${branchName}" - (${currentBranch}) ...`))
-      await repository.mergeBranches(currentBranch, `refs/remotes/origin/${currentBranch}`)
+      await repository.mergeBranches(currentBranch, `refs/remotes/${remote ?? DEFAULT_REMOTE}/${currentBranch}`)
       logger.log('...merge complete.\n')
     }).catch((ex) => {
       logger.log(chalk.blue`unable to fetch branch "${branchName}"`)
@@ -29,13 +31,13 @@ const fetchBranch = (repository: Git.Repository) => async (branchName: string): 
     })
 }
 
-type IRemoteObj = {
+type IRemoteRepositoryInfo = {
   readonly name: string;
   readonly url: string;
   readonly defaultBranch: string;
 };
 
-const fetchRemoteInfo = async (item: Git.Remote): Promise<IRemoteObj> => {
+const fetchRemoteInfo = async (item: Git.Remote): Promise<IRemoteRepositoryInfo> => {
   let defaultBranch;
 
   try {
@@ -57,12 +59,11 @@ const fetchRemoteInfo = async (item: Git.Remote): Promise<IRemoteObj> => {
  * Update all remotes, if they exist
  * @param repository
  */
-const fetchRemotes = async (repository: Git.Repository): Promise<void> => {
+const fetchRemotes = async (repository: Git.Repository): Promise<readonly Git.Remote[] | undefined> => {
   logger.log('fetching remotes list...\n')
 
-  const remotes = await repository.getRemotes()
-  const remoteObjs: readonly IRemoteObj[] = await Promise
-    .all(remotes.map(fetchRemoteInfo))
+  const remotes: readonly Git.Remote[] = await repository.getRemotes()
+  const remoteObjs: readonly IRemoteRepositoryInfo[] = await Promise.all(remotes.map(fetchRemoteInfo))
     .catch((ex) => {
       logger.log('critical failure: ', ex)
       return []
@@ -70,20 +71,22 @@ const fetchRemotes = async (repository: Git.Repository): Promise<void> => {
 
   if (!remoteObjs.length) {
     logger.log('did not find any remotes. Cancelling fetch')
-    return
+    return undefined
   }
 
   logger.log('fetching remotes: ', remoteObjs)
   try {
     await mapSeries(
       remoteObjs,
-      async (item: IRemoteObj) => executeCommand(`git fetch ${item.name}`)
+      async (item: IRemoteRepositoryInfo) => executeCommand(`git fetch ${item.name}`)
     )
     logger.log('fetch complete.\n')
   } catch (ex) {
     logger.log('error: unable to fetch remotes!')
     logger.log(ex)
   }
+
+  return remotes
 }
 
 const printHeader = (headerName: string) => {
@@ -91,7 +94,7 @@ const printHeader = (headerName: string) => {
 
   const equals = chalk.blue('\n==================================================================\n');
   const appName = chalk.yellow(figlet.textSync(headerName, { horizontalLayout: 'full' }));
-  const appVersion = '1.0.0';
+  const appVersion = '1.0.1';
   const versionStr = chalk.red(`Version: ${appVersion}`);
   const authorStr = chalk.red('Author: Carl Eiserman');
 
@@ -102,14 +105,13 @@ const printHeader = (headerName: string) => {
     '\n2. Fetch and merge this repository\'s main branches\n')
 }
 
-export const fetch = async (): Promise<void> => {
+export const fetch = async (originsList: readonly string[]): Promise<void> => {
   printHeader('GitMate Fetch')
 
   const repository = await Git.Repository.open("./")
 
   // Config
   const branchesToFetch = ['master', 'develop', 'dev']
-  const shouldFetchOrigin = true
   const currentBranch: string = await getCurrentBranchName(repository)
 
   const errors = []
@@ -123,8 +125,18 @@ export const fetch = async (): Promise<void> => {
   const commandGitStatus = 'git status'
   const commandCheckoutCurrentBranch = `git checkout ${currentBranch}`
 
-  if (shouldFetchOrigin) {
-    await fetchRemotes(repository)
+  const remotes = await fetchRemotes(repository)
+  const targetRemote: string | undefined = (() => {
+    if (!originsList[0]) {
+      return DEFAULT_REMOTE
+    }
+    return remotes?.find(item => item.name() === originsList[0])?.name()
+  })()
+
+  if (!targetRemote) {
+    const error = `Target remote "${originsList[0]}" not found!`
+    errors.push(error)
+    logger.log(error)
   }
 
   if (hasError()) {
@@ -132,7 +144,7 @@ export const fetch = async (): Promise<void> => {
   }
 
   logger.log('fetching branches: ', branchesToFetch)
-  await mapSeries(branchesToFetch, fetchBranch(repository))
+  await mapSeries(branchesToFetch, fetchBranch(repository, targetRemote))
   logger.log('fetch complete.')
 
   await executeCommand(commandCheckoutCurrentBranch)
